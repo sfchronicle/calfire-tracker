@@ -20,7 +20,6 @@ var FireModule = {
 		}
 	},
 	render: function(r) {
-		console.log("process", r);
 		var c = r.data.length;
 		var h = [];
 		var mostRecent = 0;
@@ -32,7 +31,9 @@ var FireModule = {
 			if (tmp > 1) {
 				fireName = item.name.substring(0, item.name.indexOf("("));
 			}
-			var info = item.info.split(", ");
+			if (item.info){
+				var info = item.info.split(", ");
+			}
 			var acres = info[0];
 			var percent = info[1];
 			var updateTime = new Date(item.updateTime);
