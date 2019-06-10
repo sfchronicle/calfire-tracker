@@ -1,59 +1,209 @@
+//
+// #hnp-fire-module {
+// 	width: 100%;
+// 	margin-bottom: 10px;
+// 	font-size: 12px;
+// 	font-family: Arial;
+// }
+// #hnp-fire-module div {
+// 	display: inline-block;
+// 	border: 0px solid #ccc;
+// 	margin: 10px;
+// 	width: 150px;
+// 	vertical-align: top;
+//
+// 	&:nth-child(5){
+// 		display:none;
+// 	}
+// }
+// #hnp-fire-module #fire-footer {
+// 	display: block;
+// 	border: 0px solid #ccc;
+// 	margin: 10px;
+// 	vertical-align: top;
+// 	width: 90%;
+// 	font-size: 11px;
+// }
+// #hnp-fire-module {
+//
+// 	a{
+// 		color:@redlinks;
+// 	}
+// 	h2{
+// 		font-family:@block-graphics;
+// 		margin: 0;
+// 		padding: 0;
+// 		padding-top: 0.125em;
+// 		color:#333;
+// 		font-size:20px;
+//
+// 		@media @mobile{
+// 			font-size:17px;
+// 		}
+// 	}
+//
+// 	.info{
+// 		font-family:@med-graphics;
+// 		margin: 0;
+// 		padding: 0;
+// 		padding-top: 0.125em;
+// 		font-size:16px;
+//
+// 	}
+// 	.county{
+// 		font-family:@block-graphics;
+// 		margin: 0;
+// 		padding: 0;
+// 		padding-top: 0.125em;
+// 	}
+// }
 
-#hnp-fire-module {
-	width: 100%;
-	margin-bottom: 10px;
+.container {
+	margin: 1.2em 0;
+}
+.widget-title {
+	font-size: 1.5em;
+	margin: 0 20px;
+	font-weight: 400;
+	color: #111;
+	padding: 5px 0 0;
+	border-top: 3px solid red;
+}
+@media (max-width: 480px) {
+	.widget-title {
+		font-size: 0.91em;
+		padding-bottom: 0;
+		margin: 0 5px;
+	}
+}
+.update {
 	font-size: 12px;
-	font-family: Arial;
+	font-family: "Source Sans Pro", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin: 1px 20px 10px;
+	line-height: 0;
+	font-weight: bold;
+	color: #EC1C24;
 }
-#hnp-fire-module div {
-	display: inline-block;
-	border: 0px solid #ccc;
-	margin: 10px;
-	width: 150px;
-	vertical-align: top;
-	
-	&:nth-child(5){
-		display:none;
+.update span {
+	letter-spacing: 0;
+	color: #000;
+	font-weight: normal;
+}
+@media (max-width: 480px) {
+	.update {
+		margin: 3px 7px 5px;
+		font-size: 10px;
 	}
 }
-#hnp-fire-module #fire-footer {
-	display: block;
-	border: 0px solid #ccc;
-	margin: 10px;
-	vertical-align: top;
-	width: 90%;
+#fires {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: space-between;
+	justify-content: space-between;
+	padding: 0 0 20px;
+	margin: 0 20px;
+	border-bottom: 1px solid #ccc;
+}
+@media (max-width: 480px) {
+	#fires {
+		margin: 0 5px;
+	}
+}
+.fire {
+	-webkit-flex: 0 0 23%;
+	-ms-flex: 0 0 23%;
+	flex: 0 0 23%;
+	margin: 0 10px 0 0;
+}
+@media (max-width: 768px) {
+	.fire {
+		-webkit-flex: 0 0 47%;
+		-ms-flex: 0 0 47%;
+		flex: 0 0 47%;
+	}
+}
+.title {
+	font-size: 19px;
+	line-height: 1.2;
+	color: #333;
+	text-align: left;
+	padding: 0;
+	font-family: "Source Sans Pro 700", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+}
+@media (max-width: 480px) {
+	.title {
+		font-size: 13px;
+		line-height: 1.2;
+	}
+}
+.meta {
+	font-family: "Source Sans Pro 400", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+}
+@media (max-width: 480px) {
+	.meta {
+		font-size: 10px;
+	}
+}
+.meta a {
+	color: #EC1C24;
+}
+.meta span {
+	font-weight: bold;
+}
+.meta .source {
+	padding: 0;
+	font-size: 10px;
+}
+@media (max-width: 480px) {
+	.meta .source {
+		font-size: 8px;
+	}
+}
+.meta .source.update {
+	margin-top: 10px;
+}
+.links {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: 5px 20px;
 	font-size: 11px;
+	font-family: "Source Sans Pro 400", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-#hnp-fire-module {
-
-	a{
-		color:@redlinks;
+@media (max-width: 480px) {
+	.links {
+		margin: 5px 0;
 	}
-	h2{
-		font-family:@block-graphics;
-		margin: 0;
-		padding: 0;
-		padding-top: 0.125em;
-		color:#333;
-		font-size:20px;
-
-		@media @mobile{
-			font-size:17px;
-		}
+}
+.links a {
+	color: #EC1C24;
+	text-decoration: underline;
+}
+.links span {
+	-webkit-flex: 0 0 12%;
+	-ms-flex: 0 0 12%;
+	flex: 0 0 12%;
+}
+@media (max-width: 768px) {
+	.links span {
+		-webkit-flex: 1 0;
+		-ms-flex: 1 0;
+		flex: 1 0;
+		padding: 0 10px;
 	}
-
-	.info{
-		font-family:@med-graphics;
-		margin: 0;
-		padding: 0;
-		padding-top: 0.125em;
-		font-size:16px;
-
-	}
-	.county{
-		font-family:@block-graphics;
-		margin: 0;
-		padding: 0;
-		padding-top: 0.125em;
-	}
+}
+.links .logo {
+	max-width: 100px;
 }

@@ -1,64 +1,41 @@
-var FireModule = {
-	init: function(){
-		this.el = document.getElementById("hnp-fire-module") || false;
-		if (!this.el) {
-			console.log("Missing target el");
-		}
-		var oReq = new XMLHttpRequest();
-		oReq.addEventListener("load", this.process);
-		oReq.open("GET", "http://extras.sfgate.com/editorial/wildfires/calfire.json");
-		oReq.send();
-	},
-	process: function(r) {
-		var self = FireModule;
-		var response = r.target.responseText || false;
-		if (response) {
-			var json = JSON.parse(response);
-			FireModule.render(json);
-		} else {
-			self.el.innerHTML = "<!-- Please refresh... -->";
-		}
-	},
-	render: function(r) {
-		var c = r.data.length;
-		var h = [];
-		var mostRecent = 0;
-		var mostRecentText = "";
-		for (var i=0; i<c; i++) {
-			var item = r.data[i];
-			var fireName = item.name;
-			var tmp = item.name.indexOf("(");
-			if (tmp > 1) {
-				fireName = item.name.substring(0, item.name.indexOf("("));
-			}
-			if (item.info){
-				var info = item.info.split(", ");
-			}
-			var acres = info[0];
-			var percent = info[1];
-			var updateTime = new Date(item.updateTime);
-			if (updateTime > mostRecent) {
-				mostRecent = updateTime;
-				mostRecentText = item.updateTime;
-			}
-			h.push([
-				"<div class='fire' title=\"Updated: " + item.updateTime + "\">",
-				  "<a href=\"" + item.link + "\" target=\"_blank\">",
-				    "<h2>" + fireName + "</h2>",
-				  "</a>",
-				  "<p class='county'>" + item.county + "</p>",
-				  "<p class='info'>" + acres + "</p>",
-				  "<p class='info'>" + percent + "</p>",
-				"</div>"
-			].join("\n"));
-		}
-		var notesHTML = [
-			"<div id=\"fire-footer\">",
-			"<b>Updated</b>: " + mostRecentText + " ",
-			"<b>Latest Info</b>: <a href=\"http://www.fire.ca.gov/current_incidents\" target=\"_blank\">Cal Fire Incidents</a>",
-			"</div>"
-		].join("");
-		this.el.innerHTML = h.join("\n") + "\n" + notesHTML;
-	}
-};
-FireModule.init();
+(function(){
+var _$main_1 = {};
+'use strict';
+
+// https://sfc-project-files.s3.amazonaws.com/project-feeds/fire_tracker_c2p_firedata_2019.json
+// C2P UPDATES BELOW URL ON DEPLOY, BUT UNABLE TO PARSE
+// https://files.sfchronicle.com/project-feeds/FireData_2019.sheet.json
+$.get("https://files.sfchronicle.com/project-feeds/FireData_2019.sheet.json", function (data) {
+
+	// DON'T HAVE LAST UPDATED FIELD IN JSON FILE, SO JUST RETURNING CURRENT TIME FOR NOW
+	// update date
+	// var updated = data[0].Update;
+	var updated = new Date();
+	$('#updated').append(updated);
+
+	// get the first 4 fires
+	var fires = data.splice(0, 4);
+
+	// get fire data from each
+	fires.forEach(function (fire) {
+
+		var title = fire.FireName,
+		    slug = fire.FireName.replace(/[|&;$%@"<>()+,\s]+/g, '-').toLowerCase(),
+		    acreage = fire.Acreage,
+		    agency = fire.Agency,
+		    description = fire.Description,
+		    source = fire.Source,
+		    startDate = fire.StartDate,
+		    containment = fire.Containment;
+
+		// save each fire data html
+		var fireDiv = "<div class='fire " + slug + "'>" + "<div class='title'>" + title + "</div>" +
+		// "<div class='description'><p>" + description + "</p></div>" +
+		"<div class='meta'>" + "<div class='acreage'><span>Acres:</span> " + acreage + "</div>" + "<div class='containment'><span>Contained:</span> " + containment + "</div>" + "<div class='startdate'><span>Started:</span> " + startDate + "</div>" + "<div class='source'>Source: <a href='" + source + "' target='_blank'>" + agency + "</a></div>" + "</div></div>";
+
+		// print each fire data html
+		$('#fires').append(fireDiv);
+	});
+});
+
+}());
