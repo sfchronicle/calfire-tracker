@@ -20,7 +20,7 @@
     "googleapis": "^18.0.0",
     "grunt": "^1.0.0",
     "grunt-contrib-connect": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0",
     "html-entities": "^1.2.0",
     "htmlparser2": "^3.9.0",
     "less": "^2.6.1",
